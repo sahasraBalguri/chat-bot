@@ -34,5 +34,8 @@ exports.createChat = async(req, res)=> {
     const chat = await newchat.save();
     res.json(chat);
   } catch (error) {
-    console.error('');
-}
+    console.error('Error creating chat:', error);
+    res.status(500).json({message" 'Server error'});
+ }
+};
+
