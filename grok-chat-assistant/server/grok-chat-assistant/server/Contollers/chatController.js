@@ -39,3 +39,17 @@ exports.createChat = async(req, res)=> {
  }
 };
 
+exports.sendMessage =  async (req, res)=> {
+  try{
+    const {content} = req.body;
+
+    if(!content) {
+      retutn res.status(400).json ({message: 'Message content is required'});
+    }
+    let chat = await Chat.findOne({_id: req.params.id, user: req.user.id});
+
+    if(!chat) {
+      
+    }
+  }
+}
