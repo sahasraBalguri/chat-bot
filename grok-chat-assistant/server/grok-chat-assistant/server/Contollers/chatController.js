@@ -24,3 +24,13 @@ exports.getChatById = async (req, res) => {
     res.status(500).json ({message: 'server error'});
   }
 };
+exports.createChat = async(req, res)=> {
+  try {
+    const newChat = nw chat ({
+      user: req.user.id,
+      title: req.body.title || 'New chat',
+      messages: []
+    });
+    const 
+  }
+}
