@@ -31,6 +31,6 @@ exports.createChat = async(req, res)=> {
       title: req.body.title || 'New chat',
       messages: []
     });
-    const chat = awai newchat.save();
+    const chat = await newchat.save();
   }
 }
