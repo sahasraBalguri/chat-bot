@@ -32,5 +32,7 @@ exports.createChat = async(req, res)=> {
       messages: []
     });
     const chat = await newchat.save();
-  }
+    res.json(chat);
+  } catch (error) {
+    console.error('');
 }
