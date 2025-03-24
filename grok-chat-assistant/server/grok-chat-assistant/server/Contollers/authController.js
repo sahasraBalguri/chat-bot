@@ -38,4 +38,8 @@ try{
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
   
