@@ -10,3 +10,17 @@ exports.getChats = async (req, res) => {
     res.status(500).json({ message: 'Server error'});
   }
 };
+
+exports.getChatById = async (req, res) => {
+  try {
+    const chat = await Chat.findOne({_id: req.params.id, user: req.user.id});
+
+    if(!chat) {
+      return res.status(404).json({ message: 'Chat not found'});
+  }
+    res.json(chat);
+} catch (error) {
+    console.error('Error fetching chat:', error);
+    res.status(500).json ({message: 'server error'});
+  }
+};
