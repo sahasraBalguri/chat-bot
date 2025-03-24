@@ -1,7 +1,7 @@
 const Chat = require('../models/Chat');
 const grokService = require('../services/grokService');
 
-exports.getChats = asu=ync (req, res) => {
+exports.getChats = async (req, res) => {
   try {
     const chats = await Chat.find({ user: req.user.id}).sort ({ updatedAt: -1});
     res.json(chats);
