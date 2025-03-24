@@ -49,7 +49,9 @@ exports.sendMessage =  async (req, res)=> {
     let chat = await Chat.findOne({_id: req.params.id, user: req.user.id});
 
     if(!chat) {
+      return res.status(404).json({message:'Chat not found'});
       
     }
+    //Add user msg
   }
 }
