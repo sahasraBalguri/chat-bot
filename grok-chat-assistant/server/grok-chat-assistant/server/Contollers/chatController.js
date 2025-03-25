@@ -58,6 +58,50 @@ exports.sendMessage =  async (req, res)=> {
       content,
       timestamp:new Date()
     };
-      
+      chat.messages.push(userMessage);
+
+const grokMessages = chat.messages.map(msg => ({
+      role: msg.role,
+      content: msg.content
+}));
+
+    const grokResponse = await grokService.generateResponse(grokMessages);
+
+    const assistantMessage = {
+      role: 'assistant',
+      content: grokResponse.content,
+      timestamp: new Date()
+    };
+    
+    chat.messages.push(assistantMessage);
+    chat.updatedAt = new Date();
+
+    if (chat.title === 'New Chat' && chat.messages.length === 2) {
+      chat.title = content.substring(0, 30) + (content.length > 30 ? '...' : '');
+    }
+    
+    await chat.save();
+    res.json({
+      userMessage,
+      assistantMessage,
+      chatId: chat._id
+    });
+  } catch (error) {
+    console.error('Error sending message:', error);
+    res.status(500).json({ message: 'Server error' });
   }
-}
+};
+exports.deleteChat = async (req, res) => {
+  try {
+    const chat = await Chat.findOneAndDelete({ _id: req.params.id, user: req.user.id });
+    
+    if (!chat) {
+      return res.status(404).json({ message: 'Chat not found' });
+    }
+    
+    res.json({ message: 'Chat deleted' });
+  } catch (error) {
+    console.error('Error deleting chat:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
