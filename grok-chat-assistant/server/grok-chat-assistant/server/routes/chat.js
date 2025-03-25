@@ -7,3 +7,7 @@ router.use(authMiddleware);
 router.get('/', chatController.getChats);
 router.get('/:id', chatController.getChatById);
 router.post('/', chatController.createChat);
+router.post('/:id/message', chatController.sendMessage);
+router.delete('/:id', chatController.deleteChat);
+
+module.exports = router;
