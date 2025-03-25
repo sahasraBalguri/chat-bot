@@ -53,5 +53,11 @@ exports.sendMessage =  async (req, res)=> {
       
     }
     //Add user msg
+    const userMessage = {
+      role: 'user',
+      content,
+      timestamp:new Date()
+    };
+      
   }
 }
