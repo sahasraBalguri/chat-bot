@@ -13,8 +13,7 @@ exports.getChats = async (req, res) => {
 
 exports.getChatById = async (req, res) => {
   try {
-    const chat = await Chat.findOne({_id: req.params.id, user: req.user.id});
-
+   
     if(!chat) {
       return res.status(404).json({ message: 'Chat not found'});
   }
