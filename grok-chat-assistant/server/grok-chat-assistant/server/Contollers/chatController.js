@@ -103,6 +103,6 @@ exports.deleteChat = async (req, res) => {
     res.json({ message: 'Chat deleted' });
   } catch (error) {
     console.error('Error deleting chat:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error' })
   }
 };
