@@ -10,4 +10,3 @@ router.post('/', chatController.createChat);
 router.post('/:id/message', chatController.sendMessage);
 router.delete('/:id', chatController.deleteChat);
 
-module.exports = router;
