@@ -12,6 +12,8 @@ exports.getChats = async (req, res) => {
 };
 
 exports.getChatById = async (req, res) => {
+   const chat = await Chat.findOne({_id: req.params.id, user: req.user.id});
+
   try {
    
     if(!chat) {
