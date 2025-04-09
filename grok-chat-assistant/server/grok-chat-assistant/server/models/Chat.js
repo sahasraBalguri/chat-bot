@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MessageSchema = new mongoose.Schema({
+const MessageSchema = new mongoose.Schema({ 
   role: {
     type: String,
     enum: ['user', 'assistant'], 
